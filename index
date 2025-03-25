@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HomeBudget - Control Inteligente de Gastos del Hogar</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#6366f1',
+                        secondary: '#8b5cf6',
+                        dark: '#1e293b',
+                        light: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Animaciones personalizadas */
+        .hero-image {
+            transform: perspective(1500px) rotateY(15deg);
+            box-shadow: rgba(0, 0, 0, 0.25) 0px 25px 50px -12px;
+            transition: transform 1s ease, box-shadow 1s ease;
+        }
+        .hero-image:hover {
+            transform: perspective(3000px) rotateY(5deg);
+            box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 60px -12px;
+        }
+        .feature-card {
+            transition: all 0.3s ease;
+            transform: translateY(0);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+        .fade-in {
+            opacity: 0;
+        }
+    </style>
+</head>
+<body class="bg-light font-sans antialiased">
+    <!-- Navbar -->
+    <nav class="bg-white shadow-sm fixed w-full z-10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <i class="fas fa-wallet text-primary text-2xl mr-2"></i>
+                        <span class="text-xl font-bold text-dark">HomeBudget</span>
+                    </div>
+                </div>
+                <div class="hidden md:ml-6 md:flex md:items-center md:space-x-8">
+                    <a href="#features" class="text-dark hover:text-primary px-3 py-2 font-medium">Características</a>
+                    <a href="#how-it-works" class="text-dark hover:text-primary px-3 py-2 font-medium">Cómo funciona</a>
+                    <a href="#testimonials" class="text-dark hover:text-primary px-3 py-2 font-medium">Testimonios</a>
+                </div>
+                <div class="flex items-center">
+                    <a href="auth/login.html" class="text-dark hover:text-primary px-3 py-2 font-medium mr-4">Iniciar sesión</a>
+                    <a href="auth/register.html" class="bg-primary hover:bg-secondary text-white px-4 py-2 rounded-md font-medium transition-colors">
+                        Registrarse
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-12 md:pt-32 md:pb-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:grid lg:grid-cols-12 lg:gap-8">
+                <div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left fade-in">
+                    <h1 class="text-4xl tracking-tight font-extrabold text-dark sm:text-5xl md:text-6xl">
+                        <span class="block">Controla tus</span>
+                        <span class="block text-primary">finanzas familiares</span>
+                    </h1>
+                    <p class="mt-3 text-base text-gray-500 sm:mt-5 sm:text-lg sm:max-w-xl sm:mx-auto md:mt-5 md:text-xl lg:mx-0">
+                        La solución inteligente para administrar los gastos del hogar con análisis predictivos y categorización automática.
+                    </p>
+                    <div class="mt-8 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
+                        <div class="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
+                            <div class="rounded-md shadow">
+                                <a href="auth/register.html" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-white bg-primary hover:bg-secondary md:py-4 md:text-lg md:px-10">
+                                    Comenzar gratis
+                                </a>
+                            </div>
+                            <div class="mt-3 sm:mt-0 sm:ml-3">
+                                <a href="#features" class="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-white border-primary hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
+                                    Ver características
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-12 relative sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center fade-in">
+                    <div class="relative mx-auto w-full rounded-lg shadow-lg lg:max-w-md">
+                        <img class="hero-image w-full rounded-lg" src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Control de gastos">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center fade-in">
+                <h2 class="text-base text-primary font-semibold tracking-wide uppercase">Características</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-dark sm:text-4xl">
+                    Todo lo que necesitas para controlar tus finanzas
+                </p>
+                <p class="mt-4 max-w-2xl text-xl text-gray-500 lg:mx-auto">
+                    Herramientas diseñadas para simplificar la administración del hogar
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="space-y-10 md:space-y-0 md:grid md:grid-cols-2 md:gap-x-8 md:gap-y-10">
+                    <!-- Feature 1 -->
+                    <div class="feature-card relative bg-light p-6 rounded-lg fade-in">
+                        <div class="flex items-center">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                <i class="fas fa-chart-pie text-xl"></i>
+                            </div>
+                            <div class="ml-5">
+                                <h3 class="text-lg leading-6 font-medium text-dark">Análisis Visual</h3>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-gray-500">
+                            Gráficos interactivos que muestran tus patrones de gastos e ingresos de manera clara y comprensible.
+                        </div>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="feature-card relative bg-light p-6 rounded-lg fade-in">
+                        <div class="flex items-center">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                <i class="fas fa-robot text-xl"></i>
+                            </div>
+                            <div class="ml-5">
+                                <h3 class="text-lg leading-6 font-medium text-dark">Categorización Automática</h3>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-gray-500">
+                            Nuestra IA clasifica automáticamente tus transacciones para ahorrarte tiempo y esfuerzo.
+                        </div>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="feature-card relative bg-light p-6 rounded-lg fade-in">
+                        <div class="flex items-center">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                <i class="fas fa-bell text-xl"></i>
+                            </div>
+                            <div class="ml-5">
+                                <h3 class="text-lg leading-6 font-medium text-dark">Alertas Inteligentes</h3>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-gray-500">
+                            Recibe notificaciones cuando tus gastos excedan ciertos límites o detectemos patrones inusuales.
+                        </div>
+                    </div>
+
+                    <!-- Feature 4 -->
+                    <div class="feature-card relative bg-light p-6 rounded-lg fade-in">
+                        <div class="flex items-center">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-md bg-primary text-white">
+                                <i class="fas fa-mobile-alt text-xl"></i>
+                            </div>
+                            <div class="ml-5">
+                                <h3 class="text-lg leading-6 font-medium text-dark">Acceso Multiplataforma</h3>
+                            </div>
+                        </div>
+                        <div class="mt-2 text-gray-500">
+                            Accede a tus datos desde cualquier dispositivo, en cualquier momento. Totalmente responsive.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="py-12 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center fade-in">
+                <h2 class="text-base text-primary font-semibold tracking-wide uppercase">Cómo funciona</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-dark sm:text-4xl">
+                    Simple, rápido y efectivo
+                </p>
+            </div>
+
+            <div class="mt-10">
+                <div class="relative">
+                    <!-- Steps -->
+                    <div class="grid md:grid-cols-3 gap-8">
+                        <!-- Step 1 -->
+                        <div class="flex flex-col items-center text-center fade-in">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-full bg-primary text-white font-bold mb-4">
+                                1
+                            </div>
+                            <h3 class="text-lg font-medium text-dark mb-2">Regístrate</h3>
+                            <p class="text-gray-500">
+                                Crea tu cuenta en menos de un minuto. Sin complicaciones.
+                            </p>
+                        </div>
+
+                        <!-- Step 2 -->
+                        <div class="flex flex-col items-center text-center fade-in">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-full bg-primary text-white font-bold mb-4">
+                                2
+                            </div>
+                            <h3 class="text-lg font-medium text-dark mb-2">Registra tus gastos</h3>
+                            <p class="text-gray-500">
+                                Añade tus transacciones manualmente o importa tus datos bancarios.
+                            </p>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div class="flex flex-col items-center text-center fade-in">
+                            <div class="flex items-center justify-center h-12 w-12 rounded-full bg-primary text-white font-bold mb-4">
+                                3
+                            </div>
+                            <h3 class="text-lg font-medium text-dark mb-2">Analiza y mejora</h3>
+                            <p class="text-gray-500">
+                                Obtén insights valiosos y toma el control de tus finanzas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 flex justify-center fade-in">
+                <div class="bg-white p-8 rounded-lg shadow-lg max-w-2xl">
+                    <div class="aspect-w-16 aspect-h-9">
+                        <img class="w-full h-auto rounded-lg" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80" alt="Dashboard preview">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-12 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center fade-in">
+                <h2 class="text-base text-primary font-semibold tracking-wide uppercase">Testimonios</h2>
+                <p class="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-dark sm:text-4xl">
+                    Lo que dicen nuestros usuarios
+                </p>
+            </div>
+
+            <div class="mt-10 grid md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="bg-light p-6 rounded-lg fade-in">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/women/32.jpg" alt="Usuario">
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-dark">María González</h3>
+                            <p class="text-gray-500">Familia de 4</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "HomeBudget nos ha ayudado a reducir nuestros gastos mensuales en un 20%. La categorización automática es increíblemente precisa."
+                    </p>
+                    <div class="mt-4 text-primary">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="bg-light p-6 rounded-lg fade-in">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/men/54.jpg" alt="Usuario">
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-dark">Carlos Martínez</h3>
+                            <p class="text-gray-500">Soltero</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "Por fin puedo entender a dónde va mi dinero cada mes. Las alertas me han ayudado a evitar gastos innecesarios."
+                    </p>
+                    <div class="mt-4 text-primary">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="bg-light p-6 rounded-lg fade-in">
+                    <div class="flex items-center mb-4">
+                        <div class="flex-shrink-0">
+                            <img class="h-10 w-10 rounded-full" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Usuario">
+                        </div>
+                        <div class="ml-4">
+                            <h3 class="text-lg font-medium text-dark">Laura Fernández</h3>
+                            <p class="text-gray-500">Pareja</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 italic">
+                        "La posibilidad de compartir el control de gastos con mi pareja ha eliminado todas nuestras discusiones sobre dinero."
+                    </p>
+                    <div class="mt-4 text-primary">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-12 bg-gradient-to-r from-primary to-secondary">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center fade-in">
+                <h2 class="text-3xl font-extrabold text-white sm:text-4xl">
+                    <span class="block">¿Listo para tomar el control de tus finanzas?</span>
+                </h2>
+                <p class="mt-3 max-w-md mx-auto text-lg text-indigo-100 sm:text-xl md:mt-5 md:max-w-3xl">
+                    Comienza hoy mismo y descubre cómo puedes mejorar tu situación financiera.
+                </p>
+                <div class="mt-8 flex justify-center">
+                    <div class="inline-flex rounded-md shadow">
+                        <a href="auth/register.html" class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-md text-primary bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10">
+                            Crear cuenta gratis
+                            <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
+                    </div>
+                </div>
+                <p class="mt-3 text-sm text-indigo-100">
+                    Sin tarjeta de crédito requerida. Cancelación en cualquier momento.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white">
+        <div class="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Producto</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#features" class="text-base text-gray-400 hover:text-white">Características</a></li>
+                        <li><a href="#how-it-works" class="text-base text-gray-400 hover:text-white">Cómo funciona</a></li>
+                        <li><a href="#" class="text-base text-gray-400 hover:text-white">Precios</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Compañía</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-400 hover:text-white">Sobre nosotros</a></li>
+                        <li><a href="#" class="text-base text-gray-400 hover:text-white">Blog</a></li>
+                        <li><a href="#" class="text-base text-gray-400 hover:text-white">Contacto</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Legal</h3>
+                    <ul class="mt-4 space-y-4">
+                        <li><a href="#" class="text-base text-gray-400 hover:text-white">Privacidad</a></li>
+                        <li><a href="#" class="text-base text-gray-400 hover:text-white">Términos</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-sm font-semibold text-gray-300 tracking-wider uppercase">Conéctate</h3>
+                    <div class="mt-4 flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="mt-12 border-t border-gray-700 pt-8 flex justify-between">
+                <p class="text-base text-gray-400">
+                    &copy; 2025 HomeBudget. Todos los derechos reservados.
+                </p>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-400 hover:text-white">
+                        <span class="sr-only">Español</span>
+                        ES
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Anime.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script>
+        // Animaciones al hacer scroll
+        const fadeIns = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    anime({
+                        targets: entry.target,
+                        opacity: 1,
+                        translateY: 0,
+                        duration: 800,
+                        easing: 'easeOutExpo',
+                        delay: anime.stagger(100)
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        fadeIns.forEach(fadeIn => {
+            observer.observe(fadeIn);
+        });
+
+        // Smooth scrolling para los enlaces
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
